@@ -1,0 +1,30 @@
+version: "3.3"
+
+volumes:
+  db-data:
+    external: false
+
+services:
+  db:
+    image: postgres:14-alpine
+    volumes:
+      - db-data:/var/lib/psql/db-data
+    environment:
+      POSTGRES_USER: rails
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+
+  app:
+    image: video:latest
+    environment:
+      SECRET_KEY_BASE: 10162d43557f2c9ec356be19d62e4b12
+      POSTGRES_HOST: db
+      POSTGRES_PORT: '5432'
+      POSTGRES_USER: rails
+      POSTGRES_PASSWORD: password
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
