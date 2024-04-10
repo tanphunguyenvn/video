@@ -1,8 +1,8 @@
 
-import { Login } from '../Login/Login';
-import { Logo } from '../Logo/Logo';
+import Login from '../Login/Login';
+import Logo from '../Logo/Logo';
 
-export const Header = () => {
+function Header() {
   return (
     <div className='p-5 flex'>
       <Logo />
@@ -10,3 +10,5 @@ export const Header = () => {
     </div>
   )
 }
+
+export default Header;

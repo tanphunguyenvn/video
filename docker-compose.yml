@@ -28,3 +28,12 @@ services:
       - 3000:3000
     depends_on:
       - db
+  
+  react-app:
+    image: client:latest
+    build: .
+    ports:
+      - 8080:8080
+    environment:
+      REACT_APP_SYNCFUSION_LICENSE_KEY: "adsfdsa"
+

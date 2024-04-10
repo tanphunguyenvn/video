@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { signInUser, signUpUser } from '../../api/userApi';
+import { objToString } from '../../util/util';
 
-export const Login = () => {
+function Login() {
   const initialData = {
     token: localStorage.getItem('token') || '',
     user: localStorage.getItem('user') || '',
@@ -23,14 +24,20 @@ export const Login = () => {
         password,
       },
     };
-    const res = await signInUser(payload);
+    try {
+      const res = await signInUser(payload);
 
-    if (res.status === 200 && res?.data?.token) {
-      const user = 'decoded token here';
-      localStorage.setItem('token', res?.data?.token)
-      localStorage.setItem('user', user)
-      setToken(res?.data?.token);
-      setUser(user);
+      if (res.status === 200 && res?.data?.token) {
+        const user = 'decoded token here';
+        localStorage.setItem('token', res?.data?.token)
+        localStorage.setItem('user', user)
+        setToken(res?.data?.token);
+        setUser(user);
+      } else {
+        alert('error' + res.data);
+      }
+    } catch (error: any) {
+      alert(objToString(error?.response?.data?.error));
     }
   }
 
@@ -53,14 +60,18 @@ export const Login = () => {
         password,
       },
     };
-    const res = await signUpUser(payload);
+    try {
+      const res = await signUpUser(payload);
 
-    if (res.status === 201 && res?.data?.token) {
-      const user = 'decoded token here';
-      localStorage.setItem('token', res?.data?.token)
-      localStorage.setItem('user', user)
-      setToken(res?.data?.token);
-      setUser(user);
+      if (res.status === 201 && res?.data?.token) {
+        const user = 'decoded token here';
+        localStorage.setItem('token', res?.data?.token)
+        localStorage.setItem('user', user)
+        setToken(res?.data?.token);
+        setUser(user);
+      }
+    } catch (error: any) {
+      alert(objToString(error?.response?.data?.error));
     }
   }
 
@@ -107,3 +118,5 @@ export const Login = () => {
     </div>
   )
 }
+
+export default Login;

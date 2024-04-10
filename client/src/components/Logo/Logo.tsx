@@ -1,7 +1,6 @@
-
 import homeLogo from '../../assets/home.svg';
 
-export const Logo = () => {
+function Logo() {
   return (
     <div className="min-w-40 max-h-30">
       <a href="/" className="flex">
@@ -13,3 +12,5 @@ export const Logo = () => {
     </div>
   )
 }
+
+export default Logo;
