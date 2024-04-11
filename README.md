@@ -53,6 +53,7 @@ docker-compose up -d
 
 ## 7. Usage
 - First open the front end app, and register user by email and password(at least 10 character)
+- Each 5 minutes the token will expire, can set by variable TOKEN_TTL_IN_MINUTES
 - After login, user can see list video sharing
 - Can click on icon youtube to view the video in youtube.
 - Click on button share, and enter title, url of your video, and click share

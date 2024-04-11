@@ -35,6 +35,7 @@ services:
       POSTGRES_USER: rails
       POSTGRES_PASSWORD: password
       REDIS_URL: redis://redis:6379/0
+      FRONT_END_HOST: http://localhost:3000
     ports:
       - 3000:3000
     depends_on:
