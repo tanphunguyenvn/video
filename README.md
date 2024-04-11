@@ -1,24 +1,75 @@
-# README
+## 1. Introduction
+- This is project share video link
+- User can share video from youtube
+- Other User can receive notification when new video was share
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 2.Prerequisites
+- ruby 3.3.0
+- node v20.11.0
+- npm 10.2.4
+- postgresql 14
+- Docker for run app on local easy
 
-Things you may want to cover:
+## 3.Installation & Configuration
+```bash
+# install Ruby 3.3.0
+brew install ruby@3.0
 
-* Ruby version
+# install Rails ~7
+gem install rails 
 
-* System dependencies
+# install npm
+brew install nodejs
 
-* Configuration
+# install postgres
+brew install postgresql@14
+```
+## 4.Database Setup
+- can use brew start postgress
+- or start database in Docker
 
-* Database creation
 
-* Database initialization
+## 5.Running the Application
+```bash
+# run rails server at the root
+rails s
 
-* How to run the test suite
+# run front end app at path client/
+npm run dev
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## 6.Docker Deployment
+```bash
+# build rails app
+make docker-build
 
-* Deployment instructions
+# build front end app
+make docker-build-client
 
-* ...
+# run docker-compose
+docker-compose up -d
+```
+
+
+## 7. Usage
+- First open the front end app, and register user by email and password(at least 10 character)
+- After login, user can see list video sharing
+- Can click on icon youtube to view the video in youtube.
+- Click on button share, and enter title, url of your video, and click share
+- Other user can receive notification when video has shared
+
+## 8. Troubleshooting
+- Cannot connect websocket in postman, or frontend-local
+ => solution: config action cable
+```bash
+# config/environments/development.rb
+config.action_cable.allowed_request_origins = [/ws:\/\/*/, /wss:\/\/*/, 'http://localhost:8080']
+```
+
+- SSL when testing in docker-compose local => solution: allow ssl
+
+```bash
+#config/environments/production.rb
+config.assume_ssl = true
+config.force_ssl = true
+```
