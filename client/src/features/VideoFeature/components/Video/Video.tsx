@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 
 Video.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 }

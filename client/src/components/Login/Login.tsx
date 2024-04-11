@@ -33,6 +33,7 @@ function Login() {
         localStorage.setItem('user', user)
         setToken(res?.data?.token);
         setUser(user);
+        window.location.reload();
       } else {
         alert('error' + res.data);
       }
@@ -46,6 +47,7 @@ function Login() {
     localStorage.removeItem('user')
     setToken('');
     setUser('');
+    window.location.reload();
   }
 
   const handleRegister = async() => {
@@ -69,6 +71,10 @@ function Login() {
         localStorage.setItem('user', user)
         setToken(res?.data?.token);
         setUser(user);
+        window.location.reload();
+      }
+      else {
+        alert('error' + res.data);
       }
     } catch (error: any) {
       alert(objToString(error?.response?.data?.error));
