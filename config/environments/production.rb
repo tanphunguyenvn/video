@@ -79,6 +79,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  config.action_cable.allowed_request_origins = [/ws:\/\/*/, /wss:\/\/*/, 'http://localhost:8080']
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
