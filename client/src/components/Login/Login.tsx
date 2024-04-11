@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { signInUser, signUpUser } from '../../api/userApi';
-import { objToString } from '../../util/util';
+import { objToString, getUserFromJwt } from '../../util/util';
 
 function Login() {
   const initialData = {
@@ -28,10 +28,11 @@ function Login() {
       const res = await signInUser(payload);
 
       if (res.status === 200 && res?.data?.token) {
-        const user = 'decoded token here';
-        localStorage.setItem('token', res?.data?.token)
+        const token = res?.data?.token as string;
+        const user = getUserFromJwt(token);
+        localStorage.setItem('token', token)
         localStorage.setItem('user', user)
-        setToken(res?.data?.token);
+        setToken(token);
         setUser(user);
         window.location.reload();
       } else {
@@ -66,10 +67,11 @@ function Login() {
       const res = await signUpUser(payload);
 
       if (res.status === 201 && res?.data?.token) {
-        const user = 'decoded token here';
-        localStorage.setItem('token', res?.data?.token)
+        const token = res?.data?.token as string;
+        const user = getUserFromJwt(token);
+        localStorage.setItem('token', token)
         localStorage.setItem('user', user)
-        setToken(res?.data?.token);
+        setToken(token);
         setUser(user);
         window.location.reload();
       }
@@ -113,7 +115,7 @@ function Login() {
         {/* </form> */}
       </div> ) : (
       <div id='logged'>
-        <p>Hello: {user} </p>
+        <p>Welcome: {user} </p>
         <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mx-1'>Share Video</button>
         <button
           className='bg-orange-500 hover:bg-orange-700 text-white font-bold py-1 px-3 rounded mx-1'
