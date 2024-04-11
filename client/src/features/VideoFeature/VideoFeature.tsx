@@ -12,7 +12,6 @@ function VideoFeature() {
         const res = await getAllVideo();
         setVideoListData(res.data);
       } catch(error: any) {
-        console.log(error)
         if (error.response.status === 401 ) {
           localStorage.removeItem('token')
           localStorage.removeItem('user')

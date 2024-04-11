@@ -5,10 +5,10 @@ import VideoFeature from './features/VideoFeature/VideoFeature'
 function App() {
   return (
     <>
-      <Header />
+      <Header isSharePage={false}/>
       <VideoFeature />
     </>
   )
 }
 
-export default App
+export default App;

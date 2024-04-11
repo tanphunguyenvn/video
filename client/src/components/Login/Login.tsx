@@ -1,8 +1,15 @@
 import { useState } from 'react';
 import { signInUser, signUpUser } from '../../api/userApi';
 import { objToString, getUserFromJwt } from '../../util/util';
+import  { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-function Login() {
+Login.propTypes = {
+  isSharePage: PropTypes.bool.isRequired,
+}
+
+function Login(props: any) {
+  const { isSharePage } = props;
   const initialData = {
     token: localStorage.getItem('token') || '',
     user: localStorage.getItem('user') || '',
@@ -48,7 +55,6 @@ function Login() {
     localStorage.removeItem('user')
     setToken('');
     setUser('');
-    window.location.reload();
   }
 
   const handleRegister = async() => {
@@ -116,11 +122,19 @@ function Login() {
       </div> ) : (
       <div id='logged'>
         <p>Welcome: {user} </p>
-        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mx-1'>Share Video</button>
-        <button
-          className='bg-orange-500 hover:bg-orange-700 text-white font-bold py-1 px-3 rounded mx-1'
-          onClick={() => handleLogout()}
-        >Logout</button>
+      {!isSharePage &&
+        <Link to='/shares'>
+          <button
+            className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mx-1'
+          >Share Video</button>
+        </Link>
+      }
+        <Link to='/'>
+          <button
+            className='bg-orange-500 hover:bg-orange-700 text-white font-bold py-1 px-3 rounded mx-1'
+            onClick={() => handleLogout()}
+          >Logout</button>
+        </Link>
       </div>
       )}
     </div>

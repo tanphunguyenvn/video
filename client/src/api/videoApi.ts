@@ -6,8 +6,8 @@ export const getAllVideo = async() => {
   return restClient.get(url);
 };
 
-export const signInUser = async(payload: any) => {
-  const url = '/sign-in';
+export const createVideo = async(payload: any) => {
+  const url = '/shares';
   
   return restClient.post(url, payload);
 };
