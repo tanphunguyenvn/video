@@ -16,7 +16,7 @@ function VideoList(props: any) {
       {
         videoListData.map(
           (video: any) => (
-            <Video key={video.id} id={video.id} title={video.title} url={video.url} />
+            <Video key={video.id} id={video.id} title={video.title} url={video.url} userEmail={video.user_email} />
           )
         )
       }

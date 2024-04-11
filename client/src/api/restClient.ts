@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Config } from '../config/config';
 
 export const getToken = () => localStorage.getItem("token")
   ? localStorage.getItem("token")
@@ -7,7 +8,7 @@ export const getToken = () => localStorage.getItem("token")
 export const getAuthorizationHeader = () => `Bearer ${getToken()}`;
 
 const restClient = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: Config.VITE_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
     'Authorization': getAuthorizationHeader(),
