@@ -19,8 +19,10 @@ class SharesController < ApplicationController
     @share = Share.new(share_params)
     @share.user_id = @user.id
     @share.user_email = @user.email
+    format_message = "#{@share.user_email} share a video #{@share.title}"
 
     if @share.save
+      ActionCable.server.broadcast 'AlertsChannel', {'type': 'alert', 'message': format_message}
       render json: @share, status: :created
     else
       render json: @share.errors, status: :unprocessable_entity
