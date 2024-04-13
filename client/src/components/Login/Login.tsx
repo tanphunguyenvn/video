@@ -14,7 +14,7 @@ function Login(props: any) {
     token: localStorage.getItem('token') || '',
     user: localStorage.getItem('user') || '',
   }
-  const [email, setEmal] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [token, setToken] = useState(initialData.token);
   const [user, setUser] = useState(initialData.user);
@@ -31,6 +31,7 @@ function Login(props: any) {
         password,
       },
     };
+
     try {
       const res = await signInUser(payload);
 
@@ -69,6 +70,7 @@ function Login(props: any) {
         password,
       },
     };
+
     try {
       const res = await signUpUser(payload);
 
@@ -100,7 +102,7 @@ function Login(props: any) {
               id='username'
               type='text'
               placeholder='Username'
-              onChange={(event)=> setEmal(event.target.value)}
+              onChange={(event)=> setEmail(event.target.value)}
             />
             <input
               className='shadow appearance-none border rounded w-full py-1 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mx-1'

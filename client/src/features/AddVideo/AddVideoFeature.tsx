@@ -14,7 +14,8 @@ function AddVideoFeature() {
           title,
           url,
         }
-    }
+      }
+
       const res = await createVideo(payload);
       if (res.status === 201) {
         alert('create video success');

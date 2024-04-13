@@ -36,6 +36,9 @@ rails s
 
 # run front end app at path client/
 npm run dev
+
+# for unit test backend
+rspec
 ```
 
 ## 6.Docker Deployment
